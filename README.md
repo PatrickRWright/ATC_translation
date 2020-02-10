@@ -68,7 +68,7 @@ API and are translated to NA.
 ## Usage scenario
 
 Given a population of study participants it may be interesting to look at a descriptive breakdown of
-medication the population was taking at e.g. baseline. Thus, if ATC coded data for the participant 
+medication the population was taking at a given time (e.g. baseline). Thus, if ATC coded data for the participant 
 population is available `translate_ATC_codes()` can be used e.g. in conjuction with table to get a
 breakdown of which types of medication were perscribed. Since ATC is hierarchically structured this
 can be performed at several levels. An example using the data from above is shown below.
