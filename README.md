@@ -78,12 +78,16 @@ can be performed at several levels. An example using the data from above is show
 ATC_translated_df_lvl_5 <- translate_ATC_codes(ATC_vect, level_depth = 5, api_key = api_key)
 ATC_translated_df_lvl_4 <- translate_ATC_codes(ATC_vect, level_depth = 4, api_key = api_key)
 ATC_translated_df_lvl_3 <- translate_ATC_codes(ATC_vect, level_depth = 3, api_key = api_key)
+ATC_translated_df_lvl_2 <- translate_ATC_codes(ATC_vect, level_depth = 2, api_key = api_key)
+ATC_translated_df_lvl_1 <- translate_ATC_codes(ATC_vect, level_depth = 1, api_key = api_key)
 
 # show breakdowns
+# level 5
 table(ATC_translated_df_lvl_5$name)
 #atorvastatin   loperamide    lorazepam   metolazone  mirtazapine pantoprazole 
 #           3            2            3            1            2            7 
-           
+
+# level 4
 table(ATC_translated_df_lvl_4$name)
 #                                          Antipropulsives 
 #                                                        2 
@@ -98,6 +102,7 @@ table(ATC_translated_df_lvl_4$name)
 #               sulfonamides, low-ceiling diuretics, plain 
 #                                                        1
 
+# level 3
 table(ATC_translated_df_lvl_3$name)
 #                                                    ANTIDEPRESSANTS 
 #                                                                  2 
@@ -112,6 +117,27 @@ table(ATC_translated_df_lvl_3$name)
 #                             LOW-CEILING DIURETICS, EXCL. THIAZIDES 
 #                                                                  1 
 
+# level 2
+table(ATC_translated_df_lvl_2$name)
+#ANTIDIARRHEALS, INTESTINAL ANTIINFLAMMATORY/ANTIINFECTIVE AGENTS 
+#                                                               2 
+#                                                       DIURETICS 
+#                                                               1 
+#                                DRUGS FOR ACID RELATED DISORDERS 
+#                                                               7 
+#                                          LIPID MODIFYING AGENTS 
+#                                                               3 
+#                                                PSYCHOANALEPTICS 
+#                                                               2 
+#                                                   PSYCHOLEPTICS 
+#                                                               3
+
+# level 1
+table(ATC_translated_df_lvl_1$name)
+#ALIMENTARY TRACT AND METABOLISM DRUGS           CARDIOVASCULAR SYSTEM DRUGS 
+#                                    9                                     4 
+#                 NERVOUS SYSTEM DRUGS 
+                                     5 
 ```
 
 ## Citation
