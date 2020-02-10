@@ -36,34 +36,83 @@ ATC_translated_df <- translate_ATC_codes(ATC_vect, level_depth = 3, api_key = ap
 The function returns a `data.frame` with the valid input ATC codes
 in the first column (`code`) and the textual names in the second column (`name`).
 
-```r
-> ATC_translated_df
-   code                                                                name
-1  A02B DRUGS FOR PEPTIC ULCER AND GASTRO-OESOPHAGEAL REFLUX DISEASE (GORD)
-2  C03B                              LOW-CEILING DIURETICS, EXCL. THIAZIDES
-3  A02B DRUGS FOR PEPTIC ULCER AND GASTRO-OESOPHAGEAL REFLUX DISEASE (GORD)
-4  A02B DRUGS FOR PEPTIC ULCER AND GASTRO-OESOPHAGEAL REFLUX DISEASE (GORD)
-5  A07D                                                     ANTIPROPULSIVES
-6  A07D                                                     ANTIPROPULSIVES
-7  A02B DRUGS FOR PEPTIC ULCER AND GASTRO-OESOPHAGEAL REFLUX DISEASE (GORD)
-8  A02B DRUGS FOR PEPTIC ULCER AND GASTRO-OESOPHAGEAL REFLUX DISEASE (GORD)
-9  A02B DRUGS FOR PEPTIC ULCER AND GASTRO-OESOPHAGEAL REFLUX DISEASE (GORD)
-10 A02B DRUGS FOR PEPTIC ULCER AND GASTRO-OESOPHAGEAL REFLUX DISEASE (GORD)
-11 C10A                                       LIPID MODIFYING AGENTS, PLAIN
-12 C10A                                       LIPID MODIFYING AGENTS, PLAIN
-13 C10A                                       LIPID MODIFYING AGENTS, PLAIN
-14 N05B                                                         ANXIOLYTICS
-15 N05B                                                         ANXIOLYTICS
-16 N05B                                                         ANXIOLYTICS
-17 N06A                                                     ANTIDEPRESSANTS
-18 N06A                                                     ANTIDEPRESSANTS
-```
-
-Note: 
+**Note**: 
 Validity of an ID is only judged based on its length after level depth based
 truncation. Thus, IDs can never be too long, only too short. IDs which are
 not part of the ATC database, will not return results from the bioportal
 API and are translated to NA.
+
+```r
+> ATC_translated_df
+#   code                                                                name
+#1  A02B DRUGS FOR PEPTIC ULCER AND GASTRO-OESOPHAGEAL REFLUX DISEASE (GORD)
+#2  C03B                              LOW-CEILING DIURETICS, EXCL. THIAZIDES
+#3  A02B DRUGS FOR PEPTIC ULCER AND GASTRO-OESOPHAGEAL REFLUX DISEASE (GORD)
+#4  A02B DRUGS FOR PEPTIC ULCER AND GASTRO-OESOPHAGEAL REFLUX DISEASE (GORD)
+#5  A07D                                                     ANTIPROPULSIVES
+#6  A07D                                                     ANTIPROPULSIVES
+#7  A02B DRUGS FOR PEPTIC ULCER AND GASTRO-OESOPHAGEAL REFLUX DISEASE (GORD)
+#8  A02B DRUGS FOR PEPTIC ULCER AND GASTRO-OESOPHAGEAL REFLUX DISEASE (GORD)
+#9  A02B DRUGS FOR PEPTIC ULCER AND GASTRO-OESOPHAGEAL REFLUX DISEASE (GORD)
+#10 A02B DRUGS FOR PEPTIC ULCER AND GASTRO-OESOPHAGEAL REFLUX DISEASE (GORD)
+#11 C10A                                       LIPID MODIFYING AGENTS, PLAIN
+#12 C10A                                       LIPID MODIFYING AGENTS, PLAIN
+#13 C10A                                       LIPID MODIFYING AGENTS, PLAIN
+#14 N05B                                                         ANXIOLYTICS
+#15 N05B                                                         ANXIOLYTICS
+#16 N05B                                                         ANXIOLYTICS
+#17 N06A                                                     ANTIDEPRESSANTS
+#18 N06A                                                     ANTIDEPRESSANTS
+```
+
+## Usage scenario
+
+Given a population of study participants it may be interesting to look at a descriptive breakdown of
+medication the population was taking at e.g. baseline. Thus, if ATC coded data for the participant 
+population is available `translate_ATC_codes()` can be used e.g. in conjuction with table to get a
+breakdown of which types of medication were perscribed. Since ATC is hierarchically structured this
+can be performed at several levels. An example using the data from above is shown below.
+
+```r
+# perform translations
+ATC_translated_df_lvl_5 <- translate_ATC_codes(ATC_vect, level_depth = 5, api_key = api_key)
+ATC_translated_df_lvl_4 <- translate_ATC_codes(ATC_vect, level_depth = 4, api_key = api_key)
+ATC_translated_df_lvl_3 <- translate_ATC_codes(ATC_vect, level_depth = 3, api_key = api_key)
+
+# show breakdowns
+table(ATC_translated_df_lvl_5$name)
+#atorvastatin   loperamide    lorazepam   metolazone  mirtazapine pantoprazole 
+#           3            2            3            1            2            7 
+           
+table(ATC_translated_df_lvl_4$name)
+#                                          Antipropulsives 
+#                                                        2 
+#                    Benzodiazepine derivative anxiolytics 
+#                                                        3 
+#HMG CoA reductase inhibitors, plain lipid modifying drugs 
+#                                                        3 
+#                             Other antidepressants in ATC 
+#                                                        2 
+#         Proton pump inhibitors for peptic ulcer and GORD 
+#                                                        7 
+#               sulfonamides, low-ceiling diuretics, plain 
+#                                                        1
+
+table(ATC_translated_df_lvl_3$name)
+#                                                    ANTIDEPRESSANTS 
+#                                                                  2 
+#                                                    ANTIPROPULSIVES 
+#                                                                  2 
+#                                                        ANXIOLYTICS 
+#                                                                  3 
+#DRUGS FOR PEPTIC ULCER AND GASTRO-OESOPHAGEAL REFLUX DISEASE (GORD) 
+#                                                                  7 
+#                                      LIPID MODIFYING AGENTS, PLAIN 
+#                                                                  3 
+#                             LOW-CEILING DIURETICS, EXCL. THIAZIDES 
+#                                                                  1 
+
+```
 
 ## Citation
 If you use this function in your work please cite:  
