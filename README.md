@@ -20,10 +20,13 @@ source("/home/user/ATC_translation/R/translate_ATC_codes.R")
 ```
 
 ### Windows
-1. Click [here](https://github.com/PatrickRWright/ATC_translation/archive/master.zip) to download archive and save it in 
-the "Downloads" folder.
+1. Click [here](https://github.com/PatrickRWright/ATC_translation/archive/master.zip) to download
+the archive and save it in the "Downloads" folder.
 2. Navigate to the "Downloads" folder and extract the archive.
 3. `source()` in R as shown below.
+```r
+source("C:/Users/User/Downloads/ATC_translation-master/R/translate_ATC_codes.R")
+```
 
 ## Input - Usage example
 ```r
