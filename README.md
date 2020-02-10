@@ -4,16 +4,15 @@ An R statistics function to return text translations of a given character vector
 [NCBO BioPortal](https://bioportal.bioontology.org/).
 
 ## Installation
-
 You can download/clone this repository and `source()` the code in `R/translate_ATC_codes.R` in your local R session.
 An example where the repositoy has been cloned into "user's" home directory is shown below.
 
-**Clone in bash**:  
+**Clone in bash (Linux)**:  
 ```bash
 git clone https://github.com/PatrickRWright/ATC_translation
 ```
 
-**Source in R**:  
+**Source in R (Linux)**:  
 ```r
 source("/home/user/ATC_translation/R/translate_ATC_codes.R")
 ```
