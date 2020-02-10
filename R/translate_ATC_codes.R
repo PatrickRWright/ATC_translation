@@ -60,7 +60,9 @@ translate_ATC_codes <- function(ATC_codes, level_depth = 5, api_key) {
   }
   no_match_in_db <- ATC_codes_mapped$code[which(is.na(ATC_codes_mapped$name))]
   no_match_in_db_string <- paste(no_match_in_db, collapse = ", ")
-  warning(paste0("The IDs: '", no_match_in_db_string, "' returned no match."))
+  if (str_length(no_match_in_db_string)) {
+    warning(paste0("The IDs: '", no_match_in_db_string, "' returned no match."))
+  }
   return(ATC_codes_mapped)
 }
 
