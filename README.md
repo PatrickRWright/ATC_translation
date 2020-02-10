@@ -6,13 +6,13 @@ An R statistics function to return text translations of a given character vector
 ## Installation
 
 You can download/clone this repository and `source()` the code in `R/translate_ATC_codes.R` in your local R session.
-An example where the repositoy has been cloned into user's home directory is shown below.
+An example where the repositoy has been cloned into "user's" home directory is shown below.
 
 ```r
 source("/home/user/ATC_translation/R/translate_ATC_codes.R")
 ```
 
-## Usage example
+## Input - Usage example
 ```r
 # vector of ATC codes
 ATC_vect <- c("A02BC02", "C03BA08", "A02BC02", "A02BC02", "A07DA03", "A07DA03",
@@ -52,3 +52,18 @@ in the first column (`code`) and the textual names in the second column (`name`)
 17 N06A                                                     ANTIDEPRESSANTS
 18 N06A                                                     ANTIDEPRESSANTS
 ```
+
+Note: 
+Validity of an ID is only judged based on its length after level depth based
+truncation. Thus, IDs can never be too long, only too short. IDs which are
+not part of the ATC database, will not return results from the bioportal
+API and are translated to NA.
+
+## Citation
+If you use this function in your work please cite:  
+TDB
+
+## References
+[Anatomical Therapeutic Chemical (ATC) Classification System](https://en.wikipedia.org/wiki/Anatomical_Therapeutic_Chemical_Classification_System)  
+[BioPortal publication](https://www.ncbi.nlm.nih.gov/pubmed/21672956)  
+[BioPortal API help](https://www.bioontology.org/wiki/BioPortal_Help#Programming_with_the_BioPortal_API)  
