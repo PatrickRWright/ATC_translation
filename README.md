@@ -137,7 +137,7 @@ table(ATC_translated_df_lvl_1$name)
 #ALIMENTARY TRACT AND METABOLISM DRUGS           CARDIOVASCULAR SYSTEM DRUGS 
 #                                    9                                     4 
 #                 NERVOUS SYSTEM DRUGS 
-                                     5 
+#                                    5 
 ```
 
 ## Citation
