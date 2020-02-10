@@ -8,6 +8,12 @@ An R statistics function to return text translations of a given character vector
 You can download/clone this repository and `source()` the code in `R/translate_ATC_codes.R` in your local R session.
 An example where the repositoy has been cloned into "user's" home directory is shown below.
 
+**Clone in bash**:  
+```bash
+git clone https://github.com/PatrickRWright/ATC_translation
+```
+
+**Source in R**:  
 ```r
 source("/home/user/ATC_translation/R/translate_ATC_codes.R")
 ```
