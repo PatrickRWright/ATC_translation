@@ -20,7 +20,10 @@ source("/home/user/ATC_translation/R/translate_ATC_codes.R")
 ```
 
 ### Windows
-Click [here](https://github.com/PatrickRWright/ATC_translation/archive/master.zip) to download archive.
+1. Click [here](https://github.com/PatrickRWright/ATC_translation/archive/master.zip) to download archive and save it in 
+the "Downloads" folder.
+2. Navigate to the "Downloads" folder and extract the archive.
+3. `source()` in R as shown below.
 
 ## Input - Usage example
 ```r
