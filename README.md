@@ -44,6 +44,8 @@ api_key <- "a123b456-cd78-91e2-fgh3-4ij56kl7mno8"
 ATC_translated_df <- translate_ATC_codes(ATC_vect, level_depth = 3, api_key = api_key)
 ```
 
+If `HTTP error 401` is returned your API key is likely wrong or void.
+
 ## Output
 
 The function returns a `data.frame` with the valid input ATC codes
