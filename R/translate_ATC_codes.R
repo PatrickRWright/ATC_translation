@@ -59,7 +59,7 @@ translate_ATC_codes <- function(ATC_codes, level_depth = 5, api_key) {
     stop("Select an integer from 1, 2, 3, 4 or 5")
   }
   no_match_in_db <- ATC_codes_mapped$code[which(is.na(ATC_codes_mapped$name))]
-  no_match_in_db_string <- paste(no_match_in_db, collapse = ", ")
+  no_match_in_db_string <- paste(unique(no_match_in_db), collapse = ", ")
   if (str_length(no_match_in_db_string)) {
     warning(paste0("The IDs: '", no_match_in_db_string, "' returned no match."))
   }
@@ -70,8 +70,7 @@ translate_ATC_codes <- function(ATC_codes, level_depth = 5, api_key) {
 # len is the length of the ATC code level (7 is the maximum 1 the minimum)
 # api_key is as explained in translate_ATC_codes()
 map_ATC_to_text <- function(ATC_codes, len = 7, api_key) {
-  api_link_part1 <- "http://data.bioontology.org/search?q="
-  api_link_part2 <- "&ontologies=ATC&require_exact_match=true"
+  api_link <- "http://data.bioontology.org/search?ontologies=ATC&require_exact_match=true&q="
   # get relevant substring
   ATC_codes_trunc <- substr(ATC_codes, start = 1, stop = len)
 
@@ -95,7 +94,7 @@ map_ATC_to_text <- function(ATC_codes, len = 7, api_key) {
   # query API for each code
   for (i in 1:nrow(uniq_ATC_set_df)) {
     curr_code <- uniq_ATC_set_df$code[i]
-    full_api_link <- paste0(api_link_part1, curr_code, "&apikey=", api_key, api_link_part2)
+    full_api_link <- paste0(api_link, curr_code, "&apikey=", api_key)
     json_df <- fromJSON(full_api_link)
     if(length(json_df$collection)) {
       uniq_ATC_set_df$name[i] <- json_df$collection$prefLabel
