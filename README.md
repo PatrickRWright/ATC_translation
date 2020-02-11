@@ -29,6 +29,9 @@ source("C:/Users/User/Downloads/ATC_translation-master/R/translate_ATC_codes.R")
 ```
 
 ## Input - Usage example
+
+If the `level_depth` parameter is not instantly tangible [this](https://en.wikipedia.org/wiki/Anatomical_Therapeutic_Chemical_Classification_System) article will likely help.
+
 ```r
 # vector of ATC codes
 ATC_vect <- c("A02BC02", "C03BA08", "A02BC02", "A02BC02", "A07DA03", "A07DA03",
